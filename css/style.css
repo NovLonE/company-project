@@ -1,0 +1,379 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgb(43, 43, 43);
+}
+
+ul, ol{
+    list-style: none;
+}
+
+a{
+    text-decoration: none; /* a태그 내용 밑줄 없애줌. */
+}
+
+img{
+    vertical-align: top; /* 인라인블럭 요소인 img 태그의 정렬기준을 상단으로 변경.*/
+    border: 0; /* 크롬 이외 브라우저에서 img태그에 자동으로 추가하는 외곽선을 없앰.*/
+}
+
+/* 이 위의 5개의 스타일은 웹사이트 제작시 필수로 입력해야한다. */
+
+.wrap{
+    width: 100%;
+    min-width: 1240px;
+}
+
+.header{
+    height: 80px;
+
+}
+
+.headerin{
+    width: 1200px; 
+    /*
+    안전사이즈 : 브라우저의 너비에 관계없이 반드시 노출되어야 하는 범위이며
+                이미지의 픽셀 깨짐이 발생하지 않는 최대 범위이기도 함.
+    */
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 수직으로 정렬할 요소가 1줄이면 items, 2줄 이상이면 content */
+}
+
+.logo a{
+    display: block;
+    width: 138px;
+    height: 20px;
+    background-image: url(../img/logo.gif);
+    text-indent: -99999px;
+}
+
+.gnb ul{
+    display: flex;
+}
+
+.gnb li{
+    margin-right: 50px;
+    
+}
+
+.gnb li a{
+    color: rgb(44, 44, 44);
+    font-size: 18px;
+    /* a태그의 색상은 a태그에서 수정한다. 상속이 영향을 미치지 못함. */
+    
+}
+
+.gnb li a:hover{
+    color: rgb(255, 41, 130);
+}
+
+.member ul{
+    display: flex;
+}
+
+.member li a{
+    color: rgb(44, 44, 44);
+    margin: 0 10px;
+    
+}
+
+.member li a:hover{
+    text-decoration: underline;
+}
+
+.wrap .main1{
+    height: 480px; 
+    /* 
+    현재 main1의 높이는 위의 height 없이는 0이다. 
+    position때문에 main1의 요소인 main1Img가 독립됐기 때문이다.
+    이 경우, main1 바로 다음에 오는 텍스트나 이미지 등의 요소들이 
+    main1의 부모태그인 container의 첫줄, 
+    즉 이미지로 가려진 뒤편부터 시작되는
+    문제가 발생한다. 이것을 막기 위해 main1Img만큼의 
+    height를 주어 가상의 공간을 점유시킨다.
+    */
+    position: relative;
+    overflow: hidden;
+    /* 
+    -위에서 이어짐-
+    브라우저의 너비보다 큰 이미지 때문에 브라우저의 너비가 안전사이즈보다
+    크고 이미지보다 작은 경우에도 아래쪽에 스크롤이 생기므로
+    이를 정리하기 위해서 .main1에 overflow:hidden;을 설정함.
+
+    이렇게 한다고 하더라도 안전사이즈보다 브라우저의 너비가 작아지면 .main1Img의
+    이미지가 잘려서 표시가 되므로 (안전사이즈 때문에 스크롤은 생기지만 overflow때문에
+    이미지는 잘려있다. 스크롤을 움직여보면 알수있다.) .main1Img의 min-width를 
+    안전사이즈와 동일하게 고정함. 
+    
+    이 경우 스크롤을 오른쪽으로 쭉 당겨보면 헤더나 다른부분이 브라우저의
+    경계와 맞닿아서 조금 답답해 보일 수 있다. 따라서 가시성을 위해 min-width는
+    조금의 여유를 두는것이 적절하다.
+     */ 
+    margin-bottom: 40px;
+}
+
+.main1Img{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -800px;
+    /* img를 가운데로 하기위해 기준이 된 main1의 위에서부터 0에 고정,
+    그리고 브라우저의 크기에 관계없이 가운데에 오도록 하기 위해
+    우선 left에서 50%이동 (right도 가능)
+    그뒤에 이미지 width의 절반만큼 같은 방향으로 마이너스마진을 입력.
+     */ 
+}
+
+.main2{
+    align-items: center;
+}
+
+.main2 p{
+    display: flex;
+    justify-content: center;
+}
+
+.main2 p a{
+    margin: 0 10px 40px 10px;
+}
+
+.main3{
+    position: relative;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.main3 h2{
+    /* 
+    만일 h2태그 등에서 폰트의 크기를 늘릴 생각이라면 css문서 최상단의
+    초기화 영역에서 설정한 line-height를 참고해야한다. 현재문서 기준으로
+    20px이상으로 폰트의 크기가 커지는 경우, 폰트는 수치만큼 커지지만
+    line-height는 그대로 고정되어있기 때문에 폰트가 다른 태그와 영역이
+    겹치는 경우가 발생한다. 이를 방지하기위해 해당 폰트가 포함된 태그에
+    직접 line-height를 알맞게 설정해줘야한다.
+    */ 
+    line-height: 24px;
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.main3 h2 span{
+    font-weight: 400;
+}
+
+.main3 ul{
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    height: 460px;
+}
+
+.main3 ul li{
+    width: 285px;
+    height: 285px;
+}
+
+.main3 ul li a{
+    text-align: center;
+}
+
+.main3 .itemImg{
+    margin-bottom: 10px;
+    /* 마진은 아래로 주자 */
+}
+
+.main3 .itemImg img{
+    border: 1px solid rgb(168, 168, 168);
+    width: 100%;
+    /* 
+    이미지의 크기조절을 위해 img의 width는 
+    img 부모태그에 width를 주고 
+    img 태그에는 100%를 직접지정 
+    img태그에 직접 설정을 하는건 이 경우에 한함.
+    margin padding 등 다른 요소들은 img의 부모태그에 
+    주는것이 일반적이다.
+    */
+    
+}
+
+.main3 ul li a{
+    color: black;
+}
+
+.main3 ul li .itemName{
+    font-weight: 700;
+}
+
+.main3 ul li .itemPrice{
+    padding: 10px;
+}
+
+.main3 li .itemPrice span{
+    /* 
+    span 태그는 inline요소이기 때문에 상하margine이 들어가지 않고
+    크기가 존재하지 않는다. 따라서 display를 통해 속성을 바꿔야한다.
+    block으로 바꾸면 기본속성으로 인해 줄바꿈이 발생하므로
+    inline-block으로 바꿔야 줄바꿈 없이 margine 부여가 가능해진다.
+    */
+    display: inline-block;
+    margin-top: 8px;
+    /*
+    하지만 여기까지 입력을 해도 img와 그뒤 텍스트가 같이 margine을
+    받는 현상이 생긴다. img태그가 inline-block속성을 부여받았지만
+    바로뒤에 이어지는 텍스트는 여전히 block인 상태에서 두가지 태그
+    모두가 inline-block취급을 받아 같이 margine을 받는것이 첫번째
+    이유고, inline-block 태그의 정렬 기준이 기본적으로 아래쪽인것이
+    두번째 이유다. 25,000의 바로 아래가 두 태그의 정렬 기준선이며
+    두개로 묶인 이상 두가지중 하나의 태그에 margine을 주면 아래에
+    기준선을 맞춘 채로 같이 밀려나는 것이다. 따라서 기준선을 위로
+    설정하는 vertical-align을 top으로 주면 해결된다.
+    */
+
+    vertical-align: top;
+}
+
+.main3 .more{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.main3 .more a{
+    color: black;
+    /* a태그의 폰트색상은 a태그에서 바꿔야한다. */
+    width: 11px;
+    height: 11px;
+    background-image: url(../img/icon_plus.png);
+    padding-right: 16px; /* p태그의 영역을 늘리면 클릭가능영역인 a의 영역이 추가할 아이콘에 미치지 못한다. */
+    background-repeat: no-repeat;
+    background-position: 40px center;
+    /* 0915 img를 넣는 다른방법. */
+}
+
+.main3 .more a span{
+    display: inline-block;
+    vertical-align: top; /* itemPrice와 동일한 이유 */
+    margin: 7px 0 0 3px;
+}
+
+.main4{
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.main4 ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main4 li{
+    position: relative;
+    /* relative를 li에 주면 된다. 기존에는 main4에 주고 txt를 1,2,3으로 구분해서 absolute를 줌 */
+}
+
+.main4 li p{
+    color: rgb(122, 122, 122);
+    font-size: 16px;
+}
+
+.main4 li .main4Txt{
+    position: absolute;
+    top: 60px;
+    left: 17px;
+    line-height: 20px;
+}
+
+.footer{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+
+
+.footer .footerIn li{
+    margin: 20px 20px 20px 0;
+}
+
+.footer .footerIn a{
+    color: black;
+}
+.footer .footerMenu ul{
+    display: flex;
+}
+
+.footer .privacy a{
+    color: rgb(255, 41, 130);
+}
+
+.footer .footerInfo .mar{
+    margin-right: 20px;
+}
+
+.footer .footerInfo .bar{
+    color: gray;
+}
+
+.footer .footerRight{
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+.footer .footerRightImg{
+    margin-bottom: 10px;
+}
+
+.footer .footerRightTxt{
+    margin-bottom: 10px;
+}
+
+.footer .footerRightCheck a{
+    color: black;
+    background-image: url(../img/arrow01.png);
+    padding-right: 15px;
+    background-repeat: no-repeat;
+    background-position: 120px center;
+}
+
+
+
+/*
+아리따움소개
+가맹점 개설문의
+사회공헌 활동
+사이트 이용약관
+개인정보 처리방침
+시스템 오류신고
+공지사항 & 고객센터
+㈜아모레퍼시픽 대표이사 : 심상배 서울시 중구 청계천로 100
+사업자등록번호 : 106-86-43373 [사업자 정보확인]
+통신판매업신고번호 : 2016-서울중구-0408 건강기능식품판매업 영업신고증 제8호
+고객상담(온라인) 080-555-6006 , (오프라인) 02-6080-9966 , 제품문의 080-023-5454(수신자요금부담)
+이메일주소 : support@aritaum.com
+개인정보 관리 책임자 김진우
+호스팅제공자 : (주)아모레퍼시픽
+AMOREPACIFIC CORPORATION. ALL RIGHTS RESERVED.
+
+
+(주)이니시스 구매안전서비스
+고객님의 안전거래를 위해 현금 거래에 대해
+이니페이 에스크로서비스를 이용하실 수 있습니다.
+
+서비스 가입사실 확인 */
