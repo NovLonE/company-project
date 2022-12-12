@@ -43,3 +43,5 @@ __bold(언더바 2개로 감싸기)__
 ___
 
 ### 이미지
+그냥 드래그앤드랍하면됨
+![icon_cart](https://user-images.githubusercontent.com/120345791/206955572-b9cdd83d-9fdf-46d6-b8af-a6d6a680b26f.png)
